@@ -6,7 +6,7 @@ const BadRequestError = require('../utils/errors/BadRequestError');
 const NotFound = require('../utils/errors/NotFound');
 const ConflictError = require('../utils/errors/ConflictError');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env;
 
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
@@ -14,7 +14,7 @@ module.exports.getCurrentUser = (req, res, next) => {
       if (user) {
         res.status(ERROR_CODE.OK).send({ email: user.email, name: user.name });
       } else {
-        next(new NotFound('Введены некорректные данные поиска'));
+        next(new NotFound('Пользователь не найден'));
       }
     })
     .catch((err) => {
@@ -63,7 +63,7 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь не найден');
       }
-      res.status(ERROR_CODE.OK).send({ user });
+      res.status(ERROR_CODE.OK).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

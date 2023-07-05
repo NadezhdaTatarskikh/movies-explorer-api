@@ -4,18 +4,21 @@ const { isEmail } = require('validator');
 const UnauthorizedError = require('../utils/errors/UnauthorizedError');
 
 const userSchema = new mongoose.Schema({
-  email: { // почта пользователя
+  email: {
+    // почта пользователя
     type: String,
     required: true,
     unique: true,
     validate: [isEmail],
   },
-  password: { // хеш пароля
+  password: {
+    // хеш пароля
     type: String,
     required: true,
     select: false,
   },
-  name: { // имя пользователя
+  name: {
+    // имя пользователя
     type: String,
     minlength: 2,
     maxlength: 30,

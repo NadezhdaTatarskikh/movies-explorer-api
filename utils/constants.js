@@ -8,6 +8,6 @@ const ERROR_CODE = {
   CONFLICT: 409,
 };
 
-const regexLink = /^https?:\/\/(www\.)?[0-9a-zA-Z]+([.|-]{1}[0-9a-zA-Z]+)*\.[0-9a-zA-Z-]+(\/[0-9a-zA-Z\-._~:/?#[\]@!$&'()*+,;=]*#?)?$/;
+const MONGO_URL = 'mongodb://127.0.0.1/bitfilmsdb';
 
-module.exports = { ERROR_CODE, regexLink };
+module.exports = { ERROR_CODE, MONGO_URL };

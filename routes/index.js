@@ -9,10 +9,10 @@ const NotFound = require('../utils/errors/NotFound');
 router.post('/signin', signinValidate, login); // проверяет переданные почту и пароль и возвращает JWT
 router.post('/signup', signupValidate, createUser); // создаёт пользователя с переданными email, password и name
 
-router.use(auth); // защищает маршруты, которым нужны авторизация
+router.use(auth); // защищает маршруты, которым нужна авторизация
 
-router.use('/', userRouter);
-router.use('/', movieRouter);
+router.use('/users', userRouter);
+router.use('/movies', movieRouter);
 
 router.use('*', (req, res, next) => next(new NotFound('Запрашиваемая страница не найдена')));
 
